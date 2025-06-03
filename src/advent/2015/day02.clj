@@ -26,3 +26,22 @@
        (map parse-present)
        (map present-paper)
        (reduce +)))
+
+(defn wrapping-ribbon [dims]
+  "Find the required wrapping ribbon, the smallest perimeter of any one face."
+  (* 2 (apply + (take 2 (sort dims)))))
+
+(defn bow-ribbon [dims]
+  "Find the required bow ribbon, equivalent to the volume."
+  (apply * dims))
+
+(defn present-ribbon [dims]
+  "Find the total ribbon to wrap the present and tie a bow."
+  (+ (wrapping-ribbon dims) (bow-ribbon dims)))
+
+(defn ribbon-presents [presents]
+  (->> presents
+       str/split-lines
+       (map parse-present)
+       (map present-ribbon)
+       (reduce +)))
