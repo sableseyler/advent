@@ -19,3 +19,10 @@
 (defn parse-present [dimension-string]
   "Parse rectangular dimensions of the form `LENGTHxWIDTHxHEIGHT` to integers."
   (map parse-long (str/split dimension-string #"x")))
+
+(defn process-presents [presents]
+  (->> presents
+       str/split-lines
+       (map parse-present)
+       (map present-paper)
+       (reduce +)))
