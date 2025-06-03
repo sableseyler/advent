@@ -5,3 +5,7 @@
   (case paren
         \( 1
         \) -1))
+
+(defn find-floor [route]
+  "Given a string of paren-based floor-routing `route`, identify the destination."
+  (apply + (map count-paren route)))
