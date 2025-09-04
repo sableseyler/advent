@@ -8,8 +8,8 @@
        "turn on"  (fn [_] true)
        "turn off" (fn [_] false)
        "toggle"   not)
-     [x1 x2]
-     [y1 y2]]))
+     (map parse-long [x1 x2])
+     (map parse-long [y1 y2])]))
 
 (defn change-lights [grid [action [x1 x2] [y1 y2]]]
   (map-indexed (fn [x row]
