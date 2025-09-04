@@ -4,3 +4,7 @@
                      #"(\p{Lower})\1"]) ;; At least one doubled letter
 
 (def negative-rules [#"ab|cd|pq|xy"]) ;; Banned strings
+
+(defn nice? [s]
+  (and (every? #(re-find % s) positive-rules)
+       (not-any? #(re-find % s) negative-rules)))
