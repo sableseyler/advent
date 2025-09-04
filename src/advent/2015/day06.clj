@@ -23,3 +23,14 @@
                                 row)
                    row))
                grid))
+
+(defn configure-lights [instructions]
+  (->> instructions
+       (map parse-instruction)
+       (reduce change-lights light-grid)))
+
+(defn count-lights [grid]
+  (->> grid
+       (map (partial map (partial filter identity)))
+       (map count)
+       (reduce +)))
