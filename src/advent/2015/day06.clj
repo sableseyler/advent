@@ -10,3 +10,16 @@
        "toggle"   not)
      [x1 x2]
      [y1 y2]]))
+
+(defn change-lights [grid [action [x1 x2] [y1 y2]]]
+  (map-indexed (fn [x row]
+                 (if (and (>= x x1)
+                          (<= x x2))
+                   (map-indexed (fn [y light]
+                                  (if (and (>= y y1)
+                                           (<= y y2))
+                                    (action light)
+                                    light))
+                                row)
+                   row))
+               grid))
