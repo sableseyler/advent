@@ -8,3 +8,6 @@
 (defn nice? [s]
   (and (every? #(re-find % s) positive-rules)
        (not-any? #(re-find % s) negative-rules)))
+
+(defn count-niceness [strings]
+  (count (filter nice? strings)))
