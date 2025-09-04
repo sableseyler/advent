@@ -31,7 +31,7 @@
 
 (defn count-lights [grid]
   (->> grid
-       (map (partial map (partial filter identity)))
+       (map (partial filter identity))
        (map count)
        (reduce +)))
 
