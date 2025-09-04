@@ -34,3 +34,8 @@
        (map (partial map (partial filter identity)))
        (map count)
        (reduce +)))
+
+(defn count-santa-lights [instructions]
+  (-> instructions
+      configure-lights
+      count-lights))
