@@ -17,7 +17,7 @@
   (let [[_ action x1 y1 x2 y2] (re-matches #"(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)" instr)]
     [(case action
        "turn on"  inc
-       "turn off" dec
+       "turn off" (fn [level] (if (> level 0) (dec level) 0))
        "toggle"   #(+ 2 %))
      (map parse-long [x1 x2])
      (map parse-long [y1 y2])]))
