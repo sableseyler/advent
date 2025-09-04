@@ -14,10 +14,10 @@
 (defn valid-hash? [hash]
   (str/starts-with? hash "00000"))
 
-(defn validate-input [_ input]
+(defn validate-input [key input]
   (if (valid-hash? (digest/md5 input))
-    (reduced (subs input 6))
-    input))
+    (reduced (subs input (count key)))
+    key))
 
 (defn first-valid-hash [key]
-  (reduce validate-input "" (hash-inputs key)))
+  (reduce validate-input key (hash-inputs key)))
